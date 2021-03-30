@@ -1,0 +1,24 @@
+.sidebar {
+  padding: 15px;
+  grid-area: sidebar;
+  background-color: green;
+
+}
+
+.nav {
+  list-style-type: none;
+  padding: 0;
+
+}
+
+.item {
+  padding-right: 15px;
+  margin: 10px 0;
+}
+.active {
+  color:seashell
+}
+.item_link {
+  text-decoration: none;
+  text-transform: uppercase;
+}

@@ -1,20 +1,26 @@
 
-import './App.css';
-import Footer from './Footer';
-import Header from './Header';
+import { Route, BrowserRouter } from 'react-router-dom';
+import s from './App.module.scss';
+import Dialogs from './components/Dialogs/Dialogs';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 
-import Navbar from './Navbar'
-import Profile from './Profile';
+import Navbar from './components/Navbar/Navbar'
+import Profile from './components/Profile/Profile';
+
 function App() {
   return (
-    <section className = "content-wrapper">
-      <Header />
-
-      <Navbar />
-      <Profile />
-
-      <Footer />
-    </section>
+    <BrowserRouter>
+      <section className={s.content_wrapper}>
+        <Header />
+        <Navbar />
+        <div className={s.main}>
+          <Route path="/profile" component={Profile} />
+          <Route path="/dialogs" component={Dialogs} />
+        </div>
+        <Footer />
+      </section>
+    </BrowserRouter>
   );
 }
 

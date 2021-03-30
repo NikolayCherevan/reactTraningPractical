@@ -1,8 +1,8 @@
-import React from 'react';
 
+import classes from './Footer.module.scss'
 const Footer = () => {
     return (
-        <footer>
+        <footer className={classes.footer}>
             <div> 2021 footer</div>
         </footer>
     );
