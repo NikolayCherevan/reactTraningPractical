@@ -1,24 +1,43 @@
+import React from 'react';
 import classes from './dialogs.module.scss'
-
-
+import Dialog from './DialogItem/DialogsItem'
+import Message from './Message/Message'
+import { addMessageActionCreactor, updateNewMessageText } from './../../redux/state'
 const Dialogs = (props) => {
+    let state = props.store.getState().messagesPage;
+    let messageAreaField = React.createRef();
+
+    let addMess = () => {
+     
+        props.store.dispatch(addMessageActionCreactor());
+    }
+    let onMessageItemChange = () => {
+
+        let text = messageAreaField.current.value;
+
+        props.store.dispatch(updateNewMessageText(text))
+      
+    }
+    let dialogElements = state.dialogsData.map((item, index) => {
+        return <Dialog key={index} name={item.name} id={item.id} isActive={item.isActive} />
+    })
+    let messageElements = state.messageData.map((item, index) => {
+        return <Message key={index} text={item.text} />
+    })
+
     return (
 
         <div className={classes.dialogs_wrapper}>
-                <ul className={classes.dialogs_sidebar}>
-                    <li> <a className={classes.active_dialog_user} href="#"> mike </a></li>
-                    <li> <a href="#"> bro</a></li>
-                    <li> <a href="#"> kriss</a></li>
-                    <li> <a href="#"> ed</a></li>
-                    <li> <a href="#"> some</a></li>
-                </ul>
-                <ul className={classes.dialogs_sidebar}>
-                    <li> wazzup</li>
-                    <li> ok, thanks</li>
-                    <li> u a welcome</li>
-                    <li> nice</li>
-                    <li> bye</li>
-                </ul>
+            <ul className={classes.dialogs_sidebar}>
+                {dialogElements}
+            </ul>
+            <ul className={classes.dialogs_sidebar}>
+                {messageElements}
+                <textarea ref={messageAreaField} onChange={onMessageItemChange} className={classes.text_area}
+                />
+                <button onClick={() => addMess()}> Send message </button>
+
+            </ul>
         </div>
     )
 }

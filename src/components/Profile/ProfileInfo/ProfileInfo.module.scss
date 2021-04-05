@@ -1,0 +1,28 @@
+.info_wrapper {
+    display: grid;
+    grid-template-areas: 
+    "logo logo"
+    "avatar decription";
+    grid-template-columns: 1fr 3fr;
+}
+
+.img {
+    grid-area: logo;
+}
+
+.profile_avatar {
+    max-width: 100px;
+
+    img {
+        width: 100%;
+    }
+
+    grid-area: avatar;
+}
+
+.profile_description {
+    grid-area: decription;
+    h1 {
+        margin: 0;
+    }
+}

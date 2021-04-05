@@ -4,7 +4,7 @@ const Post = (props) => {
   return (
     <>
         <div className={classes.posts__item}>
-          {props.mess}
+          {props.mess}  ❤{props.likes} 
       </div>
     </>
   )
