@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './dialogs.module.scss'
 import Dialog from './DialogItem/DialogsItem'
 import Message from './Message/Message'
-import { addMessageActionCreactor, updateNewMessageText } from './../../redux/state'
+import { addMessageActionCreactor, updateNewMessageText } from './../../redux/dialogs-reducer'
 const Dialogs = (props) => {
     let state = props.store.getState().messagesPage;
     let messageAreaField = React.createRef();
