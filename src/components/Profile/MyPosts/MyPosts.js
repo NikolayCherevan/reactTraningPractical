@@ -13,8 +13,9 @@ const MyPosts = (props) => {
   }
   let onPostItemChange = () => {
     let text = postAreaField.current.value;
-    props.updateNewPostText(text);
+    props.onPostItemChange(text);
   }
+
   let postsElements = props.posts.map((item, index) => <Post key={index} mess={item.msg} likes={item.likes} />)
 
   return (
