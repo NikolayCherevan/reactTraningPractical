@@ -15,23 +15,36 @@ let defaultReduxState = {
     ],
     messageText: ''
 };
-export const messagesReducer = (state =defaultReduxState, action) => {
-
+const messagesReducer = (state = defaultReduxState, action) => {
+    
     switch (action.type) {
         case ADD_NEW_MESSAGE:
-            let messageText = {
-                id: 9,
-                text: state.messageText,
+
+        let text = state.messageText;
+            {
+                if(text) {
+
+                    return {
+                        ...state,
+                        text: '',
+                        messageData: [...state.messageData, {
+                            id: 9,
+                            text: text
+                        }]
+                    }
+       
+                }
+
             }
-            if (state.messageText.length > 0) {
-                state.messageData.push(messageText);
-                state.messageText = '';
-            }
-            return state;
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.messageText = action.messageText;
-            return state;
+            {
+                return {
+                    ...state,
+                    messageText: action.messageText
+                }
+        
+            }
 
         default:
             return state;
@@ -41,10 +54,10 @@ export const messagesReducer = (state =defaultReduxState, action) => {
 
 
 
-export const addMessageActionCreactor = (messageText) => {
+export const addMessageActionCreactor = () => {
     return {
         type: ADD_NEW_MESSAGE,
-        messageText: messageText
+
     }
 }
 export const updateNewMessageText = (text) => {

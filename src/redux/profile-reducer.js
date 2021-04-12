@@ -8,30 +8,37 @@ let reduxDefaultState = {
     ],
     newTextValue: ''
 };
-const profileReducer = (state=reduxDefaultState, action) => {
+const profileReducer = (state = reduxDefaultState, action) => {
 
     switch (action.type) {
 
-        case ADD_POST:
+        case ADD_POST: {
+            let stateCopy = { ...state }
             let newPost = {
                 id: 5,
-                msg: state.newTextValue,
+                msg: stateCopy.newTextValue,
                 likes: 0
             }
-            if (state.newTextValue.length > 0) {
-                state.postsItems.push(newPost);
-                state.newTextValue = '';
-            }
-            return state;
 
-        case UPDATE_NEW_POST_TEXT:
-            state.newTextValue = action.newMessage;
-            return state;
+            stateCopy.postsItems = [...state.postsItems]
 
+            if (stateCopy.newTextValue.length > 0) {
+                stateCopy.postsItems.push(newPost);
+                stateCopy.newTextValue = '';
+            } 
+            return stateCopy;
+        }
+
+        case UPDATE_NEW_POST_TEXT: {
+            let stateCopy = { ...state }
+            stateCopy.newTextValue = action.newMessage;
+            return stateCopy;
+        }
         default:
             return state;
     }
 }
+
 export const addPostActionCreactor = () => {
     return {
         type: ADD_POST
