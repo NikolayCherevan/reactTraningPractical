@@ -1,22 +1,21 @@
 import React from 'react';
 import classes from './MyPosts.module.scss'
 import Post from './Post/Post';
-import { updateNewPostText, addPostActionCreactor } from './../../../redux/profile-reducer'
 
 const MyPosts = (props) => {
+
   let postAreaField = React.createRef();
+
+
 
   let addPost = () => {
     props.addPost();
-    // props.dispatch(addPostActionCreactor());
   }
-
   let onPostItemChange = () => {
     let text = postAreaField.current.value;
-    props.updateNewPostText(text)
-    // props.dispatch(updateNewPostText(text))
+    props.updateNewPostText(text);
   }
-  let postsElements = props.postsData.postsItems.map((item, index) => <Post key={index} mess={item.msg} likes={item.likes} />)
+  let postsElements = props.posts.map((item, index) => <Post key={index} mess={item.msg} likes={item.likes} />)
 
   return (
     <>

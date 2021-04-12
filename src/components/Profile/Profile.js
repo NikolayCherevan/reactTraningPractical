@@ -1,6 +1,6 @@
 
 import classes from './Profile.module.scss'
-import MyPosts from './MyPosts/MyPosts'
+import MyPostsContainer from './MyPosts/MyPostsContainer'
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
@@ -8,8 +8,7 @@ const Profile = (props) => {
   return (
     <main className={classes.main}>
       <ProfileInfo />
-      
-      <MyPosts dispatch = {props.dispatch} newTextValue = {props.postsState.newTextValue} postsData = {props.postsState}/>
+      <MyPostsContainer store={props.store}/>
     </main>
   )
 }
